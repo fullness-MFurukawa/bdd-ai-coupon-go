@@ -14,6 +14,8 @@
 | 有効期限 | 値オブジェクト | `ExpirationDate` | `NewExpirationDate(time.Time)` | 当日まで有効。引数の名前は `date` |
 | 券種コード | 値オブジェクト | `CouponCode` | `NewCouponCode(string)` | クーポンを識別する。戻り値は `(CouponCode, error)`、引数の名前は `value` |
 | 適用結果 | 値オブジェクト | `CouponApplicationResult` | | 成否・エラーメッセージ・割引額・支払金額 |
+| 成功した適用結果 | 関数 | `CouponApplicationResult` | `NewSuccessfulCouponApplicationResult(Money, Money)` | 戻り値は `CouponApplicationResult`、引数の名前は `discountAmount`、`paymentAmount`。エラーメッセージは空文字列 |
+| 失敗した適用結果 | 関数 | `CouponApplicationResult` | `NewFailedCouponApplicationResult(string, Money)` | 戻り値は `CouponApplicationResult`、引数の名前は `errorMessage`、`paymentAmount`。割引額は 0 円 |
 | クーポン | エンティティ | `Coupon` | `NewCoupon(CouponCode, Money, Money, ExpirationDate)` | 識別子は券種コード。ポインタ `*Coupon` で扱う。引数の名前は `couponCode`、`minimumPurchaseAmount`、`maximumDiscountAmount`、`expirationDate` |
 | 買い物かご | エンティティ | `Cart` | `NewCart(Money, MembershipRank)` | ポインタ `*Cart` で扱う。引数の名前は `totalAmount`、`membershipRank` |
 | 割引計算 | ドメインサービス | `DiscountCalculationService` | `NewDiscountCalculationService()` | ポインタ `*DiscountCalculationService` で扱う |
